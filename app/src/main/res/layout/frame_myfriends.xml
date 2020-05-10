@@ -14,4 +14,10 @@
         android:gravity="center"
         android:text="My Friends"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_listMyFriend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
+
 </LinearLayout>

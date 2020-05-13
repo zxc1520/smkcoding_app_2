@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="5dp"
-    android:padding="5dp">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    app:cardCornerRadius="20dp">
 
-    <TextView
-        android:id="@+id/txtFriendName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nama"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/txtFriendGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Laki-Laki"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/txtFriendEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textStyle="italic"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/txtFriendTelp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telp"
-        android:textSize="16sp"
-        android:layout_marginTop="6dp"/>
-
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="5dp"
-        android:background="#000"/>
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtCountries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Country"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/txtConfirmed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirmed"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txtDeaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deaths"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txtRecovered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recovered"
+                android:textSize="16sp"
+                android:layout_marginTop="6dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

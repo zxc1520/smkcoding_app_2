@@ -7,19 +7,15 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.smkcoding.myapplication.GithubUserAdapter
-import com.smkcoding.myapplication.MyFriend
 import com.smkcoding.myapplication.MyFriendAdapter
 import com.smkcoding.myapplication.R
-import com.smkcoding.myapplication.covid.Attributes
+import com.smkcoding.myapplication.covid19.CovidData
 import com.smkcoding.myapplication.data.CovidGlobalDataService
 import com.smkcoding.myapplication.data.apiRequest
 import com.smkcoding.myapplication.data.httpClient
 import com.smkcoding.myapplication.util.dismissLoading
 import com.smkcoding.myapplication.util.showLoading
 import com.smkcoding.myapplication.util.tampilToast
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.frame_github.*
 import kotlinx.android.synthetic.main.frame_myfriends.*
 import retrofit2.*
 
@@ -54,21 +50,22 @@ class MyFriendsFragment : Fragment() {
         val apiRequest = apiRequest<CovidGlobalDataService>(httpClient)
 
         val call = apiRequest.getAttr()
-        call.enqueue(object : Callback<List<Attributes>>{
-            override fun onFailure(call: Call<List<Attributes>>, t: Throwable) {
+        call.enqueue(object : Callback<List<CovidData>>{
+            override fun onFailure(call: Call<List<CovidData>>, t: Throwable) {
                 dismissLoading(swipeRefreshLayout)
             }
 
             override fun onResponse(
-                call: Call<List<Attributes>>,
-                response: Response<List<Attributes>>
+                call: Call<List<CovidData>>,
+                response: Response<List<CovidData>>
             ) {
                 dismissLoading(swipeRefreshLayout)
 
                 when {
                     response.isSuccessful ->
                         when {
-                            response.body()?.size != 0 -> tampilDataCovid(response.body()!!)
+                            response.body()?.size != 0 ->
+                                tampilDataCovid(response.body()!!)
                             else -> {
                                 tampilToast(context!!, "Berhasil")
                             }
@@ -81,11 +78,11 @@ class MyFriendsFragment : Fragment() {
         })
     }
 
-    private fun tampilDataCovid(attr: List<Attributes>) {
+    private fun tampilDataCovid(attr: List<CovidData>) {
         listCovid.layoutManager = LinearLayoutManager(context)
         listCovid.adapter = MyFriendAdapter(context!!, attr) {
             val attr = it
-            tampilToast(context!!, attr.countryRegion)
+            tampilToast(context!!, attr.countries)
         }
     }
 

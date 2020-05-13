@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val tabName = arrayOf("Beranda", "Github", "Profil")
+    val tabName = arrayOf("Beranda", "Lainnya", "Profil")
     val tabIcon = arrayOf(R.drawable.ic_home, R.drawable.ic_github, R.drawable.ic_person)
 
     override fun onCreate(savedInstanceState: Bundle?) {

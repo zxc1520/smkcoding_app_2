@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
-object Preferences {
-    private const val KEY_USER_REGISTERED = "user"
-    private const val KEY_PASS_REGISTERED = "pass"
-    private const val KEY_USER_IS_LOGIN = "Username_logged_in"
-    private const val KEY_STATUS_IS_LOGIN = "Status_logged_in"
+class Preferences {
+    private val KEY_USER_REGISTERED = "user"
+    private val KEY_PASS_REGISTERED = "pass"
+    private val KEY_USER_IS_LOGIN = "Username_logged_in"
+    private val KEY_STATUS_IS_LOGIN = "Status_logged_in"
 
     private fun getSharedPreference(context: Context): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(context)
@@ -43,7 +43,7 @@ object Preferences {
 
     fun setLoggedInUser(context: Context, status: Boolean): Boolean {
         return getSharedPreference(context)
-            .getBoolean(KEY_STATUS_IS_LOGIN, false)
+            .getBoolean(KEY_STATUS_IS_LOGIN, status)
     }
 
     fun clearLoggedInUser(context: Context) {

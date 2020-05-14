@@ -21,8 +21,6 @@ import retrofit2.*
 
 class MyFriendsFragment : Fragment() {
 
-    //lateinit var listTeman : ArrayList<MyFriend>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

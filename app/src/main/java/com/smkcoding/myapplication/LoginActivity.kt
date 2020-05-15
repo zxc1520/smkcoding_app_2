@@ -1,7 +1,11 @@
 package com.smkcoding.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.view.View
+import android.widget.Toast
 import com.smkcoding.myapplication.startup.Preferences
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -13,16 +17,48 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        btnLogin.setOnClickListener { validate() }
     }
 
     private fun validate() {
-        inputName = txtNama.text.toString()
-        inputPass = txtPass.text.toString()
+        inputName = edtNama.text.toString()
+        inputPass = edtPass.text.toString()
 
         when {
-            inputName.isEmpty() -> txtNama.error = "Username tidak boleh kosong"
-            inputPass.isEmpty() -> txtPass.error = "Password tidak boleh kosong"
+            inputName.isEmpty() -> edtNama.error = "Username tidak boleh kosong"
+            inputPass.isEmpty() -> edtPass.error = "Password tidak boleh kosong"
+            else -> {
+                showToast("Berhasil Login")
+                goToMain()
+            }
         }
+    }
+
+    private fun goToMain() {
+        val intent = Intent(this, MainActivity::class.java)
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        pref.apply {
+            val userName = getString("NAME", "")
+            val passWord = getString("PASS", "")
+            edtNama.setText(userName)
+            edtPass.setText(passWord)
+        }
+
+        saveData()
+    }
+
+    private fun saveData() {
+
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = pref.edit()
+        editor.putString("NAME", edtNama.text.toString()).putString("PASS", edtPass.text.toString())
+        startActivity(Intent(this, MainActivity::class.java))
+
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 }

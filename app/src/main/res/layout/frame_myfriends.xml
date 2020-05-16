@@ -7,13 +7,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listCovid"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/listCovid"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_margin="16dp" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penyebaran Virus COVID-19 Indonesiea"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/txtResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Result Will Go Here"
+            android:textSize="18sp"
+            android:layout_margin="16dp"/>
 
     </LinearLayout>
 

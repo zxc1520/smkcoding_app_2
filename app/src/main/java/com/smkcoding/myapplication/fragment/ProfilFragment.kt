@@ -32,16 +32,16 @@ class ProfilFragment : Fragment() {
         @Nullable savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        btnLogout.setOnClickListener { logout() }
+        //btnLogout.setOnClickListener { logout() }
     }
 
-    private fun logout() {
-
-        val pref = PreferenceManager.getDefaultSharedPreferences(context)
-
-        val editor = pref.edit()
-        editor.remove("NAME").remove("PASS").commit()
-        //startActivity(Intent(this, LoginActivity::class.java))
-
-    }
+//    private fun logout() {
+//
+//        val pref = PreferenceManager.getDefaultSharedPreferences(context)
+//
+//        val editor = pref.edit()
+//        editor.remove("NAME").remove("PASS").commit()
+//        //startActivity(Intent(this, LoginActivity::class.java))
+//
+//    }
 }

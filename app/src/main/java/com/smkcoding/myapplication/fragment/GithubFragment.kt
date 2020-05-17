@@ -4,16 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smkcoding.myapplication.ProvinsiAdapter
 import com.smkcoding.myapplication.R
+import com.smkcoding.myapplication.covid.ProvinsiItem
+import com.smkcoding.myapplication.covid.ProvinsiModel
+import com.smkcoding.myapplication.data.CovidGlobalDataService
 import com.smkcoding.myapplication.data.apiRequest
 import com.smkcoding.myapplication.data.httpClient
 import com.smkcoding.myapplication.util.dismissLoading
 import com.smkcoding.myapplication.util.showLoading
 import com.smkcoding.myapplication.util.tampilToast
-import kotlinx.android.synthetic.main.frame_github.*
+import kotlinx.android.synthetic.main.frame_provinsi.*
 import retrofit2.*
 
 class GithubFragment : Fragment() {
@@ -27,7 +32,8 @@ class GithubFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.frame_github, container, false)
+        return inflater.inflate(R.layout.frame_provinsi, container, false)
+
     }
 
     override fun onViewCreated(
@@ -36,6 +42,56 @@ class GithubFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         //callApiGetGithubUser()
+        callApi()
+    }
+
+    private fun callApi() {
+        showLoading(context!!, swipeRefresLayout)
+
+        val httpClient = httpClient()
+        val apiRequest = apiRequest<CovidGlobalDataService>(httpClient)
+
+        val call = apiRequest.getProv()
+        call.enqueue(object : Callback<List<ProvinsiItem>> {
+            override fun onFailure(call: Call<List<ProvinsiItem>>, t: Throwable) {
+                dismissLoading(swipeRefresLayout)
+            }
+
+            override fun onResponse(
+                call: Call<List<ProvinsiItem>>,
+                response: Response<List<ProvinsiItem>>
+            ) {
+                dismissLoading(swipeRefresLayout)
+
+                when {
+                    response.isSuccessful ->
+                        when {
+                            response.body()?.size != 0 ->
+                                tampilList(response.body()!!)
+
+                            else -> {
+                                tampilToast(context!!, "Berhasil")
+                            }
+                        }
+
+                    else -> {
+                        tampilToast(context!!,"Gagal")
+                    }
+                }
+
+            }
+
+        })
+    }
+
+    private fun tampilList(provinsiList: List<ProvinsiItem>) {
+
+        listProvinsi.layoutManager = LinearLayoutManager(context)
+        listProvinsi.adapter = ProvinsiAdapter(context!!, provinsiList) {
+            val provinsiList = it
+            tampilToast(context!!, provinsiList.attributes.provinsi)
+        }
+
     }
 
 //    fun callApiGetGithubUser() {

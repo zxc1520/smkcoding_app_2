@@ -1,2 +1,3 @@
-# smkcoding_app_2
-Aplikasi android menggunakan fragment, tablayout, recyclerview, restAPI, dll
+# Projek SMK CODING 2
+Aplikasi informasi COVID-19 Indonesia
+aplikasi ini menggunakan API https://kawalcorona.com/

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "897060820097",
+    "firebase_url": "https://smkcoding-crud-auth-f470c.firebaseio.com",
+    "project_id": "smkcoding-crud-auth-f470c",
+    "storage_bucket": "smkcoding-crud-auth-f470c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897060820097:android:0f7672eef9a29238e4e980",
+        "android_client_info": {
+          "package_name": "com.smkcoding.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897060820097-0v0lh5hkjs7oo3rnpd686bv3629ukafb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1F8Hf2T8AlQthIGokwfziElxWGSxDlc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897060820097-0v0lh5hkjs7oo3rnpd686bv3629ukafb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

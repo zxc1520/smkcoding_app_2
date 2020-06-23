@@ -5,32 +5,51 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.smkcoding.myapplication.*
 import com.smkcoding.myapplication.R
-import com.smkcoding.myapplication.Relawan
-import com.smkcoding.myapplication.RelawanActivity
-import com.smkcoding.myapplication.RelawanAdapter
 import kotlinx.android.synthetic.main.frame_relawan.*
 
 class RelawanFragment : Fragment() {
 
+    lateinit var ref : DatabaseReference
+    lateinit var auth: FirebaseAuth
+    lateinit var dataRelawan : ArrayList<RelawanModel>
     lateinit var listRelawan: ArrayList<Relawan>
 
-    private fun dataRelawan() {
-        listRelawan = ArrayList()
-        listRelawan.add(Relawan("Andi", "andika@gmail.com", "0123456789", "Jl.Manggis"))
-    }
+    private fun getData() {
+        Toast.makeText(context, "Tunggu sebentar...", Toast.LENGTH_SHORT).show()
 
-    private fun showRelawan() {
-        rv_listRelawan.layoutManager = LinearLayoutManager(activity)
-        rv_listRelawan.adapter = RelawanAdapter(activity!!, listRelawan)
-    }
+        auth = FirebaseAuth.getInstance()
+        val getUserID : String = auth?.currentUser?.uid.toString()
+        ref = FirebaseDatabase.getInstance().getReference()
+        ref.child(getUserID).child("Relawan").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, "Gagal memuat !", Toast.LENGTH_SHORT).show()
+            }
 
-    private fun initView() {
-        dataRelawan()
-        showRelawan()
+            override fun onDataChange(snapshot: DataSnapshot) {
+                dataRelawan = java.util.ArrayList<RelawanModel>()
+                for (snap in snapshot.children) {
+                    val relawan = snap.getValue(RelawanModel::class.java)
+
+                    relawan?.key
+                    dataRelawan.add(relawan!!)
+                }
+
+                rv_listRelawan.layoutManager = LinearLayoutManager(context)
+                rv_listRelawan.adapter = RelawanAdapter(context!!, dataRelawan)
+
+                Toast.makeText(context, "Berhasil dimuat", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +69,7 @@ class RelawanFragment : Fragment() {
         @Nullable savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        getData()
         fab.setOnClickListener {
             val intent = Intent(getActivity(), RelawanActivity::class.java)
             getActivity()?.startActivity(intent)

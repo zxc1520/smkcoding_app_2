@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.relawan_item.*
 
-class RelawanAdapter(private val context: Context, private val items: ArrayList<Relawan>) : RecyclerView.Adapter<RelawanAdapter.ViewHolder>() {
+class RelawanAdapter (private val context: Context, private val items: ArrayList<RelawanModel>)
+    : RecyclerView.Adapter<RelawanAdapter.ViewHolder>() {
 
     class ViewHolder(override val containerView: View)
         : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        fun bindItem(item: Relawan) {
+        fun bindItem(item: RelawanModel) {
             txtName.text = item.nama
             txtEmail.text = item.email
             txtTelp.text = item.telp

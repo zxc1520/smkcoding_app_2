@@ -38,14 +38,14 @@ class RelawanActivity : AppCompatActivity() {
 
     private fun saveData() {
 
-        val getNama: String = Nama?.text.toString()
-        val getEmail : String = Email?.text.toString()
-        val getTelp : String = Telp?.text.toString()
-        val getAlamat : String = Alamat?.text.toString()
+        val getNama: String = Nama?.getText().toString()
+        val getEmail : String = Email?.getText().toString()
+        val getTelp : String = Telp?.getText().toString()
+        val getAlamat : String = Alamat?.getText().toString()
         val getUserID : String = auth?.currentUser?.uid.toString()
 
-        if (getNama.isEmpty() && getEmail.isEmpty() && getTelp.isEmpty() && getAlamat.isEmpty() && getUserID.isEmpty()) {
-            Toast.makeText(this@RelawanActivity, "Tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
+        if (getNama.isEmpty() && getEmail.isEmpty() && getTelp.isEmpty() && getAlamat.isEmpty()) {
+            Toast.makeText(this, "Tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
         } else {
             val relawan = RelawanModel(getNama, getEmail, getTelp, getAlamat, getUserID)
             ref.child(getUserID).child("Relawan").push().setValue(relawan).addOnCompleteListener {

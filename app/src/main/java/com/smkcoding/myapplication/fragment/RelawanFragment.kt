@@ -38,8 +38,8 @@ class RelawanFragment : Fragment() {
                 dataRelawan = java.util.ArrayList<RelawanModel>()
                 for (snap in snapshot.children) {
                     val relawan = snap.getValue(RelawanModel::class.java)
-
                     relawan?.key
+
                     dataRelawan.add(relawan!!)
                 }
 

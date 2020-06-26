@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.View.OnLongClickListener
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -55,7 +56,7 @@ class RelawanAdapter (private val context: Context, private val items: ArrayList
         holder.txtTelp.setText("Telp $telp")
         holder.txtAlamat.setText("Alamat $alamat")
 
-        holder.rv_listRelawan.setOnLongClickListener(View.OnLongClickListener { view ->
+        holder.rv_listRelawan?.setOnLongClickListener(OnLongClickListener { view ->
 
             val action = arrayOf("Update", "Delete")
             val alert = AlertDialog.Builder(view.context)

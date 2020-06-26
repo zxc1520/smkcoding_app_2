@@ -17,10 +17,10 @@ class RelawanUpdateActivity : AppCompatActivity() {
     private var alamatBaru : EditText? = null
     private var database : DatabaseReference? = null
     private var auth : FirebaseAuth? = null
-    private var cekNama : String? = null
-    private var cekEmail : String? = null
-    private var cekTelp : String? = null
-    private var cekAlamat : String? = null
+    private var cekNama: String? = null
+    private var cekEmail: String? = null
+    private var cekTelp: String? = null
+    private var cekAlamat: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,31 +36,41 @@ class RelawanUpdateActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference()
 
         getData()
-        btnUpdate.setOnLongClickListener {
+
+        btnUpdate.setOnClickListener {
+
             cekNama = namaBaru?.text.toString()
             cekEmail = emailBaru?.text.toString()
             cekTelp = telpBaru?.text.toString()
             cekAlamat = alamatBaru?.text.toString()
 
-            (if (cekNama!!.isEmpty() || cekEmail!!.isEmpty() || cekTelp!!.isEmpty() || cekAlamat!!.isEmpty()) {
-                Toast.makeText(this, "Tidak boleh ada yang kosong !", Toast.LENGTH_SHORT).show()
+            if (cekNama!!.isEmpty() || cekEmail!!.isEmpty() || cekTelp!!.isEmpty() || cekAlamat!!.isEmpty()) {
+                Toast.makeText(this, "Tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
             } else {
-
-                val relawanBaru = RelawanModel(cekNama!!, cekEmail!!, cekTelp!!, cekAlamat!!)
-                val getUserID : String = auth?.currentUser?.uid.toString()
-                val getKey : String = intent?.getStringExtra("getPrimaryKey").toString()
-                database!!.child(getUserID).child("Relawan")
-                    .child(getKey).setValue(relawanBaru)
+                val getKey : String = getIntent().getStringExtra("getPrimaryKey").toString()
+                val relawanBaru = RelawanModel(cekNama!!, cekEmail!!, cekTelp!!, cekAlamat!!, getKey)
+                val getUserID : String = auth?.getCurrentUser()?.getUid().toString()
+                database!!.child(getUserID).child("Relawan").child(getKey).setValue(relawanBaru)
                     .addOnCompleteListener {
                         Toast.makeText(this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
                         finish()
                     }
+            }
 
-            }) as Boolean
         }
     }
 
     private fun getData() {
+        val getNama : String = getIntent().getStringExtra("dataNama").toString()
+        val getEmail : String = getIntent().getStringExtra("dataEmail").toString()
+        val getTelp : String = getIntent().getStringExtra("dataTelp").toString()
+        val getAlamat : String = getIntent().getStringExtra("dataAlamat").toString()
 
+        namaBaru?.setText(getNama)
+        emailBaru?.setText(getEmail)
+        telpBaru?.setText(getTelp)
+        alamatBaru?.setText(getAlamat)
+
+        Toast.makeText(this, getNama, Toast.LENGTH_SHORT).show()
     }
 }

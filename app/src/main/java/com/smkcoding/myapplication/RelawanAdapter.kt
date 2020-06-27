@@ -61,8 +61,8 @@ class RelawanAdapter (private val context: Context, private val items: ArrayList
             val action = arrayOf("Update", "Delete")
             val alert = AlertDialog.Builder(view.context)
             
-            alert.setItems(action) { dialog, which ->
-                when(which) {
+            alert.setItems(action) { dialog, i ->
+                when(i) {
                     0 -> {
                         val bundle = Bundle()
                         bundle.putString("dataNama", items.get(position).nama)

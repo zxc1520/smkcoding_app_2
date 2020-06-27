@@ -38,6 +38,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Positif"
+                        android:textColor="#e74c3c"
                         android:textSize="16sp"/>
 
                     <TextView
@@ -45,6 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Negative"
+                        android:textColor="#3498db"
                         android:textSize="16sp"/>
 
                     <TextView
@@ -52,6 +54,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Died"
+                        android:textColor="#34495e"
                         android:textSize="16sp"/>
 
             </LinearLayout>

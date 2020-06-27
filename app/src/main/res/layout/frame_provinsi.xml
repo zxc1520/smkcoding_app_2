@@ -9,22 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Kasus Covid-19 Per-Provinsi"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <View
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/banner_provinsi"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listProvinsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
+            android:layout_marginTop="10dp"
             tools:listitem="@layout/provinsi_item"
-            android:layout_below="@id/title"/>
+            android:layout_below="@id/banner"/>
 
     </RelativeLayout>
 

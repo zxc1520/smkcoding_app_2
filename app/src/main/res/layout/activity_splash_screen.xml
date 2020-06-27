@@ -9,8 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Info Covid-19"
-        android:textSize="35sp"
+        android:textSize="40sp"
         android:textStyle="bold"
+        android:textColor="@color/colorAccent"
         android:fontFamily="casual"
         android:layout_gravity="center"
         android:gravity="center"/>

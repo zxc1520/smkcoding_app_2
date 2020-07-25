@@ -7,3 +7,4 @@ Aplikasi informasi COVID-19 Indonesia dan Provinsi
 - Firebase
 
 # Aplikasi
+- https://drive.google.com/file/d/1JMK9X4l9hO0NyZXP1Ztu_lnj80RbPmo0/view?usp=sharing

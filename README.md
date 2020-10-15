@@ -1,4 +1,4 @@
-# Projek SMK CODING 2
+# Proyek SMK CODING 2
 Aplikasi informasi COVID-19 Indonesia dan Provinsi
 
 # Teknologi
